@@ -2,6 +2,7 @@ import pickle
 from collections import UserDict
 
 from record import *
+import saveload
 
 class AddressBook(UserDict):
     def __init__(self):
@@ -60,15 +61,10 @@ class AddressBook(UserDict):
             yield contact_list
 
     def save_file(self):
-        with open('.\\assistant_bot\\assistant_bot\\AddressBookData.bin', 'wb') as s_file:
-            pickle.dump(self.data, s_file)
+        saveload.save_file(self.data)
 
     def load_file(self):
-        try:
-            with open('.\\assistant_bot\\assistant_bot\\AddressBookData.bin', 'rb') as l_file:
-                self.data = pickle.load(l_file)
-        except FileNotFoundError:
-            pass
+        self.data = saveload.load_file()
 
     def get_bdays(self, timedelta):
         self.list_bdays = {}
