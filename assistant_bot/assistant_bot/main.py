@@ -1,9 +1,12 @@
 from collections import UserDict
-from assistant_bot.addressbook import *
-from assistant_bot.functions import *
+from addressbook import *
+from functions import *
+# from assistant_bot.addressbook import *
+# from assistant_bot.functions import *
 
 
 the_end = False
+
 
 def main():
     try:

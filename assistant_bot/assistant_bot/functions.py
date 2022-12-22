@@ -1,5 +1,8 @@
-from assistant_bot.input_error import *
-from assistant_bot.addressbook import *
+from input_error import *
+from addressbook import *
+
+# from assistant_bot.input_error import *
+# from assistant_bot.addressbook import *
 
 
 def parser(user_input):

@@ -1,8 +1,10 @@
 import pickle
 from collections import UserDict
 
-from assistant_bot.record import *
-import assistant_bot.saveload as saveload
+from record import *
+import saveload as saveload
+# from assistant_bot.record import *
+# import assistant_bot.saveload as saveload
 
 class AddressBook(UserDict):
     def __init__(self):

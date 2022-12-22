@@ -1,4 +1,6 @@
-from assistant_bot.fields.field import *
+from fields.field import *
+
+# from assistant_bot.fields.field import *
 from datetime import datetime, date, timedelta
 
 class Birthday(Field):

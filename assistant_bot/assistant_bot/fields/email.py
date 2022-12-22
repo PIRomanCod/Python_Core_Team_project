@@ -1,6 +1,11 @@
-from assistant_bot.fields.field import *
-from assistant_bot.exc import EmailVerificationError
+from fields.field import *
+from exc import EmailVerificationError
+
+# from assistant_bot.fields.field import *
+# from assistant_bot.exc import EmailVerificationError
+
 import re
+
 
 class Email(Field):
 
@@ -12,4 +17,3 @@ class Email(Field):
             self._value = email
         else:
             raise EmailVerificationError("Email is not valid")
-

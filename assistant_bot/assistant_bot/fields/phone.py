@@ -1,5 +1,8 @@
-from assistant_bot.fields.field import *
-from assistant_bot.exc import VerificationError
+from fields.field import *
+from exc import VerificationError
+
+# from assistant_bot.fields.field import *
+# from assistant_bot.exc import VerificationError
 
 class Phone(Field):
     @Field.value.setter
