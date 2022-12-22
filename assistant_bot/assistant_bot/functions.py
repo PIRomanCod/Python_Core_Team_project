@@ -1,6 +1,7 @@
 from input_error import *
 from addressbook import *
 
+
 def parser(user_input):
     parsed_input = user_input.lower().strip().split()
     return handler(parsed_input)
@@ -115,9 +116,11 @@ def manual():
     >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value',
     >>delete_contact 'name',
     >>days_to_bday 'name',
+    >>birthday_list 'period days',
     >>show_all",
     >>exit, >>good_bye, >>close
     '''
+
 
 commands_dict = {"hello": hello,
                  "help": manual,
