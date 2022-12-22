@@ -1,4 +1,4 @@
-from exc import *
+from assistant_bot.exc import *
 
 def input_error(func):
     def inner(*args, **kwargs):
