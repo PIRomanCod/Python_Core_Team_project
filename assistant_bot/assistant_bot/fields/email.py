@@ -1,4 +1,5 @@
 from fields.field import *
+from exc import EmailVerificationError
 import re
 
 class Email(Field):

@@ -1,4 +1,5 @@
 from fields.field import *
+from exc import VerificationError
 
 class Phone(Field):
     @Field.value.setter
