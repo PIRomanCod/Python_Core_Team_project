@@ -1,4 +1,4 @@
-from fields import *
+from assistant_bot.fields import *
 
 class Record(Field):
     def __init__(self, name):

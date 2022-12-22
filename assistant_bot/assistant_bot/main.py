@@ -1,6 +1,6 @@
 from collections import UserDict
-from addressbook import *
-from functions import *
+from assistant_bot.addressbook import *
+from assistant_bot.functions import *
 
 
 the_end = False
