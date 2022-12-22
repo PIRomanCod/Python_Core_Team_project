@@ -354,7 +354,10 @@ def delete_attribute(string):
 
 def search(string):
     new_elem = string.split()
-    return '\n'.join(users.search_contacts(new_elem[0]))
+    result = users.search_contacts(new_elem[0])
+    if type(result) == list:
+        result = '\n'.join(result)
+    return result
 
 
 def show_all():
