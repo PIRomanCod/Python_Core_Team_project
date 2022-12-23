@@ -13,10 +13,6 @@ class Record(Field):
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
-    def add_note(self, text, hashtag=''):
-        self.notes.update({text: hashtag})
-
-
     def change_attr(self, attribute, old_value=None, new_value=None):
         if attribute not in ["name", "phones", "b_day", "email", "notes", "address"]:
             raise IndexError("You didn't write an attribute")
@@ -77,14 +73,7 @@ class Record(Field):
         if self.email:
             email_info = f'Email: {self.email.value}'
         if self.notes:
-            notes_list = []
-            string_tags = ""
-            for text, tags in self.notes.items():
-                if tags:
-                    string_tags = ", ".join(tags)
-                notes_list.append(f"{text}, #{string_tags}")
-            notes_string = "; ".join(notes_list)
-            notes_info = f"Notes: {notes_string}"
+            notes_info = f'Notes: {self.notes}'
         if self.address:
             address_info = f'Lives: {self.address.value.capitalize()}'
         return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {b_day_info} {email_info} {notes_info} {address_info}"

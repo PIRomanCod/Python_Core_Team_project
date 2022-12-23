@@ -29,14 +29,8 @@ class AddressBook(UserDict):
             if self.data[name].email:
                 contact_info.append(f"Email: {self.data[name].email.value}")
             if self.data[name].notes:
-                notes_list = []
-                string_tags = ""
-                for text, tags in self.data[name].notes.items():
-                    if tags:
-                        string_tags = ", ".join(tags)
-                    notes_list.append(f"{text}, #{string_tags}")
-                notes_string = "; ".join(notes_list)
-                contact_info.append(f"Notes: {notes_string}")
+                notes_list = self.data[name].notes
+                contact_info.append(f"Notes: {notes_list}")
             if self.data[name].address:
                 address_list = self.data[name].address.value
                 contact_info.append(f"Lives: {address_list.capitalize()}")
