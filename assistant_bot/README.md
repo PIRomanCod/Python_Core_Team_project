@@ -50,6 +50,10 @@ For installation in your system:
 
 # Users Manual
 
+During the launch process, the program loads the previously created address book (if it exists)
+
+The program has the function of predictive dialing, which makes it easier to work with it. In the process of typing, available commands appear in the address bar, which can be selected with the tab + space button. Also, the predictive dialing covers already existing contacts.
+
 Commands list: >>help - shows next commands list
 
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)'
@@ -88,3 +92,5 @@ Commands list: >>help - shows next commands list
 
     >>exit, >>good_bye, >>close
         - to save and closed the application
+
+Thank you for choosing our product

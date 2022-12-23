@@ -50,39 +50,47 @@ For installation in your system:
 
 # Users Manual
 
+During the launch process, the program loads the previously created address book (if it exists)
+
+The program has the function of predictive dialing, which makes it easier to work with it. In the process of typing, available commands appear in the address bar, which can be selected with the tab + space button. Also, the predictive dialing covers already existing contacts.
+
 Commands list: >>help - shows next commands list
 
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)'
-       - to create a new contact in your contact book-  run the command with 2 arguments: Name of contact, Phone number
+       - to create a new contact in your contact book-  run the command with 2 arguments with space separating: 'Name of contact' 'Phone number'
 
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)'
-       - to add an additional phone number to an existing contact -  run the command with 2 arguments: Name of contact, Phone number
+       - to add an additional phone number to an existing contact -  run the command with 2 arguments with space separating: 'Name of contact' 'Phone number'
+
+    >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
+        - to add notes to an existing contact - run the command with at least 2 arguments with space separating, hashtags unnecessary: 'Name of contact' 'note text' '#hashtag' '#hashtag'...
 
     >>edit 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'old_value, if not defined = 0' 'new_value', for notes: 'hashtag' 'notes text'
-        - to add additional information (notes, b_day, email, address) for existing contacts - run the command with 4 arguments: Name of contact, attribute, 0, value of attribute
-        - for changes in existing information (one of: phones, notes, b_day, email, address)  - run the command with 4 arguments: Name of contact, attribute, old value of attribute, new value of attribute
+        - to add additional information (notes, b_day, email, address) for existing contacts - run the command with 4 arguments with space separating: 'Name of contact' 'attribute' '0' 'value of attribute'
+        - for changes in existing information (one of: phones, notes, b_day, email, address)  - run the command with 4 arguments with space separating: 'Name of contact' 'attribute' 'old value of attribute' 'new value of attribute'
 
     >>search 'name' or 'part of info'
         - to search in your contact book - run the command with 1 argument: full or partial of any information
 
     >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value'
-        - to delete some information (one of: phone numbers, notes, birthday, e-mail, address) for an existing contact - run the command with 3 arguments: Name of contact, attribute, value of attribute
+        - to delete some information (one of: phone numbers, notes, birthday, e-mail, address) for an existing contact - run the command with 3 arguments with space separating: 'Name of contact' 'attribute' 'value of attribute'
 
     >>delete_contact 'name'
-        - to remove a contact from the contact book - run the command with 1 argument: Name of contact
+        - to remove a contact from the contact book - run the command with 1 argument: 'Name of contact'
 
     >>days_to_bday 'name'
-        - to understand how many days are left until the contact's birthday  - run the command with 1 argument: Name of contact (of course if you fill the information before)
+        - to understand how many days are left until the contact's birthday  - run the command with 1 argument: 'Name of contact' (of course if you fill the information before)
 
     >>birthday_list 'period days'
-        - to understand which contacts in your contact book have the birthdays in some period  - run the command with 1 argument: amount of days
+        - to understand which contacts in your contact book have the birthdays in some period  - run the command with 1 argument: 'amount of days'
 
     >>show_all"
         - to show all existing information in your contact book
 
-    >>??????????
-        - to sort files in the specified folder by categories (images, documents, videos, etc.)
-        ???????? need to fix later
+    >>sort
+        - to sort files in the specified folder by categories (images, documents, videos, etc.) - run the command with 1 argument: 'absolut path to specified folder'
 
     >>exit, >>good_bye, >>close
         - to save and closed the application
+
+Thank you for choosing our product
