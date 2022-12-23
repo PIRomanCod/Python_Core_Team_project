@@ -23,5 +23,7 @@ def input_error(func):
             return "AddressBook hasn't the contact name yet, please add before change"
         except ValueError:
             return "Something goes wrong. Input 'help' for manual"
+        except FileNotFoundError:
+            return "Entered folder does not exists. Please provide correct path to folder"
 
     return inner
