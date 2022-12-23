@@ -2,6 +2,7 @@ from datetime import datetime, date, timedelta
 import pickle
 import re
 from collections import UserDict
+import cleaner
 
 
 class VerificationError(Exception):
@@ -387,6 +388,10 @@ def birthday_list(timedelta):
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
 
+def sort_files(string):
+    cleaner.main_path = string
+    cleaner.sorter(cleaner.main_path)
+    return f" Files in {string} have been sorted"
 
 def stop():
     return "Good bye!"
@@ -403,6 +408,7 @@ def manual():
     >>delete_contact 'name',
     >>days_to_bday 'name',
     >>show_all",
+    >>sort, 'path to folder' (full path to folder which needs to be sorted),
     >>exit, >>good_bye, >>close
     '''
 
@@ -420,6 +426,7 @@ commands_dict = {"hello": hello,
                  "days_to_bday": days_to_bday,
                  "birthday_list": birthday_list,
                  "show_all": show_all,
+                 "sort": sort_files,
                  "exit": stop}
 
 
@@ -431,6 +438,8 @@ def main():
             if user_input in ["good_bye", "close", "exit"]:
                 print(commands_dict.get("exit")())
                 break
+            elif user_input.split()[0] == 'sort':
+                sort_files(user_input.split()[1])
             else:
                 print(parser(user_input))
     finally:
