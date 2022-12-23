@@ -54,6 +54,24 @@ def add_phone(string):
         return "There is no contact with this name"
 
 
+def add_note(string):
+    list_elem = string.split('#')
+    hashtag = list_elem[1:]
+    hashtag_clear = [item.strip() for item in hashtag]
+    new_elem = list_elem[0].split()
+    name = new_elem[0]
+    text = " ".join(new_elem[1:])
+    if users.data.get(name):
+        if users.data[name].notes.get(text):
+            raise NoteExistError
+        record = users.data[name]
+        record.add_note(text, hashtag_clear)
+        users.add_record(record)
+        return f"Note: '{text}' with tag: {hashtag_clear} added to contact {name.title()}."
+    else:
+        return "There is no contact with this name."
+
+
 def change_attr(string):
     new_elem = string.split()
     if new_elem[0] not in users.data:
@@ -124,6 +142,7 @@ def manual():
     >>hello,
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)',
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
+    >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
     >>edit 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'old_value, if not defined = 0' 'new_value', for notes: 'hashtag' 'notes text',
     >>search 'name' or 'part of info',
     >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value',
@@ -140,6 +159,7 @@ commands_dict = {"hello": hello,
                  "help": manual,
                  "add_contact": add,
                  "add_phone": add_phone,
+                 "add_note": add_note,
                  "edit": change_attr,
                  "search": search,
                  "delete_info": delete_attribute,
