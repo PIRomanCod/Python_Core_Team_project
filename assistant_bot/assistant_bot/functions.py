@@ -31,16 +31,21 @@ def add(string):
     new_elem = string.split()
     if users.data.get(new_elem[0]):
         return "Contact already exist"
-
+    searching_result = search(new_elem[1])
+    if new_elem[1] in searching_result:
+        return f"The phone number already exist for contact: '{searching_result.split()[2]}'"
     record = Record(new_elem[0])
     record.add_phone(new_elem[1])
     users.add_record(record)
-    return f"You added new contact: {new_elem[0]} with phone number: {new_elem[1]}"
+    return f"You added new contact: {new_elem[0].capitalize()} with phone number: {new_elem[1]}"
 
 
 def add_phone(string):
     new_elem = string.split()
     if users.data.get(new_elem[0]):
+        searching_result = search(new_elem[1])
+        if new_elem[1] in searching_result:
+            return f"The phone number already exist for contact: '{searching_result.split()[2]}'"
         record = users.data[new_elem[0]]
         record.add_phone(new_elem[1])
         return f"You added contact {new_elem[0]} with number {new_elem[1]}"
