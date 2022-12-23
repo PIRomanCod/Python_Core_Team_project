@@ -12,3 +12,7 @@ class OwnerError(Exception):
 
 class NoUserError(Exception):
     pass
+
+
+class NoteExistError(Exception):
+    pass

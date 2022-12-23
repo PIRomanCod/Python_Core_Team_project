@@ -23,5 +23,7 @@ def input_error(func):
             return "AddressBook hasn't the contact name yet, please add before change"
         except ValueError:
             return "Something goes wrong. Input 'help' for manual"
+        except NoteExistError:
+            return "This note already exists"
 
     return inner
