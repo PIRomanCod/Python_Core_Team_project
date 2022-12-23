@@ -16,6 +16,8 @@ def main():
             if user_input in ["good_bye", "close", "exit"]:
                 print(commands_dict.get("exit")())
                 break
+            elif user_input.split()[0] == 'sort':
+                sort_files(user_input.split()[1])
             else:
                 print(parser(user_input))
     finally:

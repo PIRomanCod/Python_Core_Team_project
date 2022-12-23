@@ -1,7 +1,8 @@
-from datetime import datetime, date, timedelta
+from datetime import datetime, date
 import pickle
 import re
 from collections import UserDict
+
 
 
 class VerificationError(Exception):
@@ -386,7 +387,6 @@ def birthday_list(timedelta):
         a, b = i
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
-
 
 def stop():
     return "Good bye!"
