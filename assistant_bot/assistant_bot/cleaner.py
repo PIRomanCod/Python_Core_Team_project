@@ -81,6 +81,5 @@ def sorter(main_path = ''):
             create_folders_from_list(main_path, extensions)
             sort_files(main_path)
             remove_empty_folders(main_path)
-            print(f" Files in {main_path} have been sorted")
         except FileNotFoundError:
             print(f'Path {main_path} is incorrect. Please enter correct path')
