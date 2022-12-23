@@ -1,5 +1,6 @@
 from input_error import *
 from addressbook import *
+import cleaner
 
 # from assistant_bot.input_error import *
 # from assistant_bot.addressbook import *
@@ -109,6 +110,10 @@ def birthday_list(timedelta):
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
 
+def sort_files(string):
+    cleaner.main_path = string
+    cleaner.sorter(cleaner.main_path)
+    return f" Files in {string} have been sorted"
 
 def stop():
     return "Good bye!"
@@ -126,6 +131,7 @@ def manual():
     >>days_to_bday 'name',
     >>birthday_list 'period days',
     >>show_all",
+    >>sort, 'path to folder' (full path to folder which needs to be sorted),
     >>exit, >>good_bye, >>close
     '''
 
@@ -141,6 +147,7 @@ commands_dict = {"hello": hello,
                  "days_to_bday": days_to_bday,
                  "birthday_list": birthday_list,
                  "show_all": show_all,
+                 "sort": sort_files,
                  "exit": stop}
 
 users = AddressBook()

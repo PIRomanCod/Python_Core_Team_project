@@ -37,6 +37,7 @@ def get_input(p):
             'days_to_bday': name_dict,
             'birthday_list': None,
             'show_all': None,
+            'sort': None,
             'exit': None,
             'good_bye': None,
             'close': None,
