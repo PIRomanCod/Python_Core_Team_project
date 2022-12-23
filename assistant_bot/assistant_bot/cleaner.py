@@ -29,7 +29,7 @@ def get_extension(filename: str) -> str:
 def scan(folder: Path) -> None:
     for item in folder.iterdir():
         if item.is_dir():
-            if item.name not in ('archives', 'video', 'audio', 'documents', 'images', 'MY_OTHER'):
+            if item.name not in ('Archives', 'Video', 'Audio', 'Documents', 'Images', 'MY_OTHER'):
                 FOLDERS.append(item)
                 scan(item)
             continue
@@ -68,18 +68,18 @@ def handle_folder(folder: Path):
 def sort(folder: Path):
     scan(folder)
     for file in IMAGE:
-        handle_media(file, folder / 'image')
+        handle_media(file, folder / 'Image')
     for file in VIDEO:
-        handle_media(file, folder / 'video')
+        handle_media(file, folder / 'Video')
     for file in DOCS:
-        handle_media(file, folder / 'docs')
+        handle_media(file, folder / 'Docs')
     for file in AUDIO:
-        handle_media(file, folder / 'audio')
+        handle_media(file, folder / 'Audio')
 
     for file in MY_OTHER:
-        handle_other(file, folder / 'other')
+        handle_other(file, folder / 'Other')
     for file in ARCHIVE:
-        handle_media(file, folder / 'archives')
+        handle_media(file, folder / 'Archives')
     for folder in FOLDERS[::-1]:
         handle_folder(folder)
 
