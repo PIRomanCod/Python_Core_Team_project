@@ -30,6 +30,7 @@ def get_input(p):
             'hello': None,
             'add_contact': None,
             'add_phone': None,
+            'add_note': name_dict,
             'edit': name_dict_ext,
             'search': name_dict,
             'delete_info': name_dict_ext,

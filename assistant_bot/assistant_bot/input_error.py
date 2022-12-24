@@ -25,5 +25,7 @@ def input_error(func):
             return "Something goes wrong. Input 'help' for manual"
         except FileNotFoundError:
             return "Entered folder does not exists. Please provide correct path to folder"
+        except NoteExistError:
+            return "This note already exists"
 
     return inner
