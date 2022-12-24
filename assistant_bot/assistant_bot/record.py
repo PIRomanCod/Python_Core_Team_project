@@ -27,7 +27,24 @@ class Record(Field):
                         item.value = new_value
                         return True
         elif attribute == "notes":
-            self.notes[old_value] = new_value
+            string_note = f"{old_value.strip()} {new_value}"
+            list_note = string_note.split("->")
+            old_value = list_note[0]
+            new_value = "->".join(list_note[1:])
+            if self.notes:
+                find_note = []
+                tags = []
+                for note in self.notes.keys():
+                    if note.startswith(old_value):
+                        find_note.append(note)
+                if len(find_note) == 1:
+                    tags = self.notes.get(find_note[0],[])
+                    self.notes.pop(find_note[0], None)
+                    if not self.notes.get(new_value):
+                        self.notes.update({new_value: tags})
+                        return True
+                else:
+                    raise ValueError
             return True
         elif attribute == "b_day":
             self.b_day = Birthday(new_value)
@@ -52,13 +69,19 @@ class Record(Field):
                 if item == "all":
                     self.notes = {}
                     return True
+                else:
+                    raise ValueError
         elif attribute == "note":
             if self.notes:
-                if item == "all":
-                    self.notes = {}
+                find_note = []
+                for note in self.notes.keys():
+                    if note.startswith(item):
+                        find_note.append(note)
+                if len(find_note) == 1:
+                    self.notes.pop(find_note[0], None)
                     return True
                 else:
-                    return "Enter 'notes all' for delete all notes"
+                    raise ValueError
         elif attribute == "b_day":
             self.b_day = None
             return True

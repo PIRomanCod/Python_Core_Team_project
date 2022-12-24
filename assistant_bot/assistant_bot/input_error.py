@@ -25,5 +25,7 @@ def input_error(func):
             return "Something goes wrong. Input 'help' for manual"
         except NoteExistError:
             return "This note already exists"
+        except TooManyError:
+            return "Too many matches found"
 
     return inner

@@ -87,7 +87,7 @@ def change_attr(string):
 def delete_attribute(string):
     new_elem = string.split()
     record = users.data[new_elem[0]]
-    if record.delete_attribute(new_elem[1], new_elem[2]) is True:
+    if record.delete_attribute(new_elem[1], (" ").join(new_elem[2:])) is True:
         return f"For contact {new_elem[0]} attribute: {new_elem[1]} was deleted"
     else:
         return "Attribute doesn't exist"
@@ -155,10 +155,12 @@ def birthday_list(timedelta):
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
 
+
 def sort_files(string):
     cleaner.main_path = string
     cleaner.sorter(cleaner.main_path)
     return f" Files in {string} have been sorted"
+
 
 def stop():
     return "Good bye!"
@@ -172,7 +174,7 @@ def manual():
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
     >>search 'name' or 'part of info',
     >>edit 'name' 'phones' 'old_value, if not defined = 0' 'new_value', 
-                  'note' 'start with.. - change if only one match found'  '->' 'new text' '#hashtag' '#hashtag'...
+                  'note' 'start with.. - change if only one match found'  '->' 'new text' (hashtag stay the same)
                   'b_day' 'old_value, if not defined = 0' 'new_value',
                   'email' 'old_value, if not defined = 0' 'new_value',
                   'address' 'old_value, if not defined = 0' 'new_value'   
