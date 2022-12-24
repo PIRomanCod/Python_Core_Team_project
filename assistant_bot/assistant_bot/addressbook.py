@@ -45,38 +45,29 @@ class AddressBook(UserDict):
         else:
             return f"There is no contacts with this data"
 
-    # def find_text(self, text):
-    #     search_list = []
-    #     for key, value in self.data.items():
-    #         if value.get_text():
-    #             search_list.append(self.get_note(key))
-    #     if len(search_list) > 0:
-    #         return search_list
-    #     else:
-    #         return f"There is no contacts with this data"
-    #
-    # # def find_tag(self, tag):
-    # #     search_list = []
-    # #         for key, value in self.data.items():
-    # #             if value.get_text().find(text) != -1:
-    # #                 search_list.append(self.get_note(key))
-    # #         if len(search_list) > 0:
-    # #             return search_list
-    # #         else:
-    # #             return f"There is no contacts with this data"
-    #
-    # def get_note(self, name):
-    #     if self.data[name].notes:
-    #         notes_list = []
-    #         string_tags = ""
-    #         for text, tags in self.data[name].notes.items():
-    #             if tags:
-    #                 string_tags = ", ".join(tags)
-    #             notes_list.append(f"'{text}', #{string_tags}")
-    #         notes_string = "; ".join(notes_list)
-    #         return f"Notes of {name.title()}: {notes_string}"
-    #     else:
-    #         return f"{name.title()} hasn't notes"
+    def find_text(self, text):
+        search_list = []
+        for key, value in self.data.items():
+            if value.notes:
+                for note, tags in value.notes.items():
+                    if note.find(text) != -1:
+                        search_list.append(f"{key.title()}: {note}, #{tags}")
+        if len(search_list) > 0:
+            return search_list
+        else:
+            return f"There is no contacts with this data"
+
+    def find_tag(self, tag):
+        search_list = []
+        for key, value in self.data.items():
+            if value.notes:
+                for note, tags in value.notes.items():
+                    if tag in tags:
+                        search_list.append(f"{key.title()}: {note}, #{tags}")
+        if len(search_list) > 0:
+            return search_list
+        else:
+            return f"There is no contacts with this data"
 
     def search_contacts(self, name):
         search_list = []

@@ -90,22 +90,7 @@ class Record(Field):
             address_info = f'Lives: {self.address.value.capitalize()}'
         return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {b_day_info} {email_info} {notes_info} {address_info}"
 
-    # def get_text(self):
-    #     text_list =[]
-    #     if self.notes:
-    #         for text in self.notes.keys():
-    #             text_list.append(text)
-    #     return text_list
-    #
-    # def get_tag(self):
-    #     tags_list = []
-    #     if self.notes:
-    #         for tag in self.notes.values():
-    #             tags_list.append(tag)
-    #     return tags_list
-
-
-def day_to_b_day(self):
+    def day_to_b_day(self):
         if not self.b_day:
             return "The contact's birthday date not defined yet"
         current_date = datetime.now().date()

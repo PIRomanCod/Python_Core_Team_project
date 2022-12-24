@@ -93,6 +93,33 @@ def delete_attribute(string):
         return "Attribute doesn't exist"
 
 
+def find_tag(string):
+    new_elem = string.split()
+    if new_elem[0]:
+        string_result = ""
+        result = users.find_tag(new_elem[0])
+        if type(result) == list:
+            string_result = "\n".join(result)
+        else:
+            string_result = result
+        return string_result
+    else:
+        return "The command need more args"
+
+
+def find_text(string):
+    if string:
+        string_result = ""
+        result = users.find_text(string)
+        if type(result) == list:
+            string_result = "\n".join(result)
+        else:
+            string_result = result
+        return string_result
+    else:
+        return "The command need more args"
+
+
 def search(string):
     new_elem = string.split()
     result = users.search_contacts(new_elem[0])
@@ -148,6 +175,8 @@ def manual():
     >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value',
     >>delete_contact 'name',
     >>days_to_bday 'name',
+    >>find_tag 'tag'
+    >>find_text 'text'
     >>birthday_list 'period days',
     >>show_all",
     >>sort, 'path to folder' (full path to folder which needs to be sorted),
@@ -165,6 +194,8 @@ commands_dict = {"hello": hello,
                  "delete_info": delete_attribute,
                  "delete_contact": delete_contact,
                  "days_to_bday": days_to_bday,
+                 "find_tag": find_tag,
+                 "find_text": find_text,
                  "birthday_list": birthday_list,
                  "show_all": show_all,
                  "sort": sort_files,
