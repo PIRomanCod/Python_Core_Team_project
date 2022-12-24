@@ -8,8 +8,7 @@ the_end = False
 
 
 def main():
-    # print(users.find_text("of somr"))
-    try:
+   try:
         print(hello())
         while not the_end:
             #user_input = input("Enter please: ").lower()
