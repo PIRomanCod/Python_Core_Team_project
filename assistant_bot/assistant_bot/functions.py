@@ -170,9 +170,18 @@ def manual():
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)',
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
-    >>edit 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'old_value, if not defined = 0' 'new_value', for notes: 'hashtag' 'notes text',
     >>search 'name' or 'part of info',
-    >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value',
+    >>edit 'name' 'phones' 'old_value, if not defined = 0' 'new_value', 
+                  'note' 'start with.. - change if only one match found'  '->' 'new text' '#hashtag' '#hashtag'...
+                  'b_day' 'old_value, if not defined = 0' 'new_value',
+                  'email' 'old_value, if not defined = 0' 'new_value',
+                  'address' 'old_value, if not defined = 0' 'new_value'   
+    >>delete_info 'name' 'phones' 'value',
+                         'note' 'start with..' - delete if only one match found
+                         'notes' 'all'  - delete all notes
+                         'b_day' 'value'
+                         'email' 'value',
+                         'address' 'value',  
     >>delete_contact 'name',
     >>days_to_bday 'name',
     >>find_tag 'tag'

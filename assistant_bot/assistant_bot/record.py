@@ -48,14 +48,17 @@ class Record(Field):
                 else:
                     return "Contact hasn't such info"
         elif attribute == "notes":
-            try:
-                if self.notes:
-                    self.notes.pop(item, "There is no such notes")
-                # if self.notes:
-                #     self.notes.clear()
+            if self.notes:
+                if item == "all":
+                    self.notes = {}
                     return True
-            except KeyError:
-                return "There is not such notes"
+        elif attribute == "note":
+            if self.notes:
+                if item == "all":
+                    self.notes = {}
+                    return True
+                else:
+                    return "Enter 'notes all' for delete all notes"
         elif attribute == "b_day":
             self.b_day = None
             return True
@@ -84,6 +87,7 @@ class Record(Field):
                 if tags:
                     string_tags = ", ".join(tags)
                 notes_list.append(f"{text}, #{string_tags}")
+                string_tags = ""
             notes_string = "; ".join(notes_list)
             notes_info = f"Notes: {notes_string}"
         if self.address:
