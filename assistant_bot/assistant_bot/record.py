@@ -16,7 +16,6 @@ class Record(Field):
     def add_note(self, text, hashtag=''):
         self.notes.update({text: hashtag})
 
-
     def change_attr(self, attribute, old_value=None, new_value=None):
         if attribute not in ["name", "phones", "b_day", "email", "notes", "address"]:
             raise IndexError("You didn't write an attribute")
@@ -50,8 +49,10 @@ class Record(Field):
                     return "Contact hasn't such info"
         elif attribute == "notes":
             try:
-                if self.notes[item]:
+                if self.notes:
                     self.notes.pop(item, "There is no such notes")
+                # if self.notes:
+                #     self.notes.clear()
                     return True
             except KeyError:
                 return "There is not such notes"
@@ -89,7 +90,22 @@ class Record(Field):
             address_info = f'Lives: {self.address.value.capitalize()}'
         return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {b_day_info} {email_info} {notes_info} {address_info}"
 
-    def day_to_b_day(self):
+    # def get_text(self):
+    #     text_list =[]
+    #     if self.notes:
+    #         for text in self.notes.keys():
+    #             text_list.append(text)
+    #     return text_list
+    #
+    # def get_tag(self):
+    #     tags_list = []
+    #     if self.notes:
+    #         for tag in self.notes.values():
+    #             tags_list.append(tag)
+    #     return tags_list
+
+
+def day_to_b_day(self):
         if not self.b_day:
             return "The contact's birthday date not defined yet"
         current_date = datetime.now().date()

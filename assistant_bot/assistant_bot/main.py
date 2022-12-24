@@ -8,6 +8,7 @@ the_end = False
 
 
 def main():
+    #print(users.find_text('ff'))
     try:
         print(hello())
         while not the_end:
