@@ -129,8 +129,7 @@ def birthday_list(timedelta):
     return '\n'.join(after)
 
 def sort_files(string):
-    cleaner.main_path = string
-    cleaner.sorter(cleaner.main_path)
+    cleaner.start(string)
     return f" Files in {string} have been sorted"
 
 def stop():
