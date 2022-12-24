@@ -27,5 +27,7 @@ def input_error(func):
             return "Entered folder does not exists. Please provide correct path to folder"
         except NoteExistError:
             return "This note already exists"
+        except TooManyError:
+            return "Too many matches found"
 
     return inner

@@ -45,6 +45,30 @@ class AddressBook(UserDict):
         else:
             return f"There is no contacts with this data"
 
+    def find_text(self, text):
+        search_list = []
+        for key, value in self.data.items():
+            if value.notes:
+                for note, tags in value.notes.items():
+                    if note.find(text) != -1:
+                        search_list.append(f"{key.title()}: {note}, #{tags}")
+        if len(search_list) > 0:
+            return search_list
+        else:
+            return f"There is no contacts with this data"
+
+    def find_tag(self, tag):
+        search_list = []
+        for key, value in self.data.items():
+            if value.notes:
+                for note, tags in value.notes.items():
+                    if tag in tags:
+                        search_list.append(f"{key.title()}: {note}, #{tags}")
+        if len(search_list) > 0:
+            return search_list
+        else:
+            return f"There is no contacts with this data"
+
     def search_contacts(self, name):
         search_list = []
         for key, value in self.data.items():

@@ -16,7 +16,6 @@ class Record(Field):
     def add_note(self, text, hashtag=''):
         self.notes.update({text: hashtag})
 
-
     def change_attr(self, attribute, old_value=None, new_value=None):
         if attribute not in ["name", "phones", "b_day", "email", "notes", "address"]:
             raise IndexError("You didn't write an attribute")
@@ -28,7 +27,24 @@ class Record(Field):
                         item.value = new_value
                         return True
         elif attribute == "notes":
-            self.notes[old_value] = new_value
+            string_note = f"{old_value.strip()} {new_value}"
+            list_note = string_note.split("->")
+            old_value = list_note[0]
+            new_value = "->".join(list_note[1:])
+            if self.notes:
+                find_note = []
+                tags = []
+                for note in self.notes.keys():
+                    if note.startswith(old_value):
+                        find_note.append(note)
+                if len(find_note) == 1:
+                    tags = self.notes.get(find_note[0],[])
+                    self.notes.pop(find_note[0], None)
+                    if not self.notes.get(new_value):
+                        self.notes.update({new_value: tags})
+                        return True
+                else:
+                    raise ValueError
             return True
         elif attribute == "b_day":
             self.b_day = Birthday(new_value)
@@ -49,12 +65,23 @@ class Record(Field):
                 else:
                     return "Contact hasn't such info"
         elif attribute == "notes":
-            try:
-                if self.notes[item]:
-                    self.notes.pop(item, "There is no such notes")
+            if self.notes:
+                if item == "all":
+                    self.notes = {}
                     return True
-            except KeyError:
-                return "There is not such notes"
+                else:
+                    raise ValueError
+        elif attribute == "note":
+            if self.notes:
+                find_note = []
+                for note in self.notes.keys():
+                    if note.startswith(item):
+                        find_note.append(note)
+                if len(find_note) == 1:
+                    self.notes.pop(find_note[0], None)
+                    return True
+                else:
+                    raise ValueError
         elif attribute == "b_day":
             self.b_day = None
             return True
@@ -83,6 +110,7 @@ class Record(Field):
                 if tags:
                     string_tags = ", ".join(tags)
                 notes_list.append(f"{text}, #{string_tags}")
+                string_tags = ""
             notes_string = "; ".join(notes_list)
             notes_info = f"Notes: {notes_string}"
         if self.address:

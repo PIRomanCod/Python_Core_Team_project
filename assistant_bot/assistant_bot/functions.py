@@ -87,10 +87,37 @@ def change_attr(string):
 def delete_attribute(string):
     new_elem = string.split()
     record = users.data[new_elem[0]]
-    if record.delete_attribute(new_elem[1], new_elem[2]) is True:
+    if record.delete_attribute(new_elem[1], (" ").join(new_elem[2:])) is True:
         return f"For contact {new_elem[0]} attribute: {new_elem[1]} was deleted"
     else:
         return "Attribute doesn't exist"
+
+
+def find_tag(string):
+    new_elem = string.split()
+    if new_elem[0]:
+        string_result = ""
+        result = users.find_tag(new_elem[0])
+        if type(result) == list:
+            string_result = "\n".join(result)
+        else:
+            string_result = result
+        return string_result
+    else:
+        return "The command need more args"
+
+
+def find_text(string):
+    if string:
+        string_result = ""
+        result = users.find_text(string)
+        if type(result) == list:
+            string_result = "\n".join(result)
+        else:
+            string_result = result
+        return string_result
+    else:
+        return "The command need more args"
 
 
 def search(string):
@@ -128,9 +155,11 @@ def birthday_list(timedelta):
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
 
+
 def sort_files(string):
     cleaner.start(string)
     return f" Files in {string} have been sorted"
+
 
 def stop():
     return "Good bye!"
@@ -142,11 +171,22 @@ def manual():
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)',
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
-    >>edit 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'old_value, if not defined = 0' 'new_value', for notes: 'hashtag' 'notes text',
     >>search 'name' or 'part of info',
-    >>delete_info 'name' 'attribute (one of: phones, notes, b_day, email, address)' 'value',
+    >>edit 'name' 'phones' 'old_value, if not defined = 0' 'new_value', 
+                  'note' 'start with.. - change if only one match found'  '->' 'new text' (hashtag stay the same)
+                  'b_day' 'old_value, if not defined = 0' 'new_value',
+                  'email' 'old_value, if not defined = 0' 'new_value',
+                  'address' 'old_value, if not defined = 0' 'new_value'   
+    >>delete_info 'name' 'phones' 'value',
+                         'note' 'start with..' - delete if only one match found
+                         'notes' 'all'  - delete all notes
+                         'b_day' 'value'
+                         'email' 'value',
+                         'address' 'value',  
     >>delete_contact 'name',
     >>days_to_bday 'name',
+    >>find_tag 'tag'
+    >>find_text 'text'
     >>birthday_list 'period days',
     >>show_all",
     >>sort, 'path to folder' (full path to folder which needs to be sorted),
@@ -164,6 +204,8 @@ commands_dict = {"hello": hello,
                  "delete_info": delete_attribute,
                  "delete_contact": delete_contact,
                  "days_to_bday": days_to_bday,
+                 "find_tag": find_tag,
+                 "find_text": find_text,
                  "birthday_list": birthday_list,
                  "show_all": show_all,
                  "sort": sort_files,
