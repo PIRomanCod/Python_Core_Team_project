@@ -22,12 +22,12 @@ def get_input(p):
                 'phones': {str(phone): None for phone in users[name].phones},
                 'note': None,
                 'notes': {'all': None},
-                'b_day': None,
+                'birthday': None,
                 'email': {str(users[name].email) if users[name].email else '0': None},
                 'address': None}})
 
         completer = NestedCompleter.from_nested_dict({
-            'hello': None,
+            'help': None,
             'add_contact': None,
             'add_phone': name_dict,
             'add_note': name_dict,
@@ -35,7 +35,7 @@ def get_input(p):
             'search': name_dict,
             'delete_info': name_dict_ext,
             'delete_contact': name_dict,
-            'days_to_bday': name_dict,
+            'days_to_birthday': name_dict,
             'find_tag': None,
             'find_text': None,
             'birthday_list': None,
