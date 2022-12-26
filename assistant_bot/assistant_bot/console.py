@@ -1,4 +1,3 @@
-#work in progress
 try:
     from prompt_toolkit import prompt
     from prompt_toolkit.completion import NestedCompleter
@@ -6,7 +5,7 @@ try:
 except ModuleNotFoundError:
     print('try:')
     print('pip install prompt_toolkit')
-    #пока заглушка. в установщик добавлю зависимость
+    #добавил зависимость в setup.py
     notoolkit = True
     
 from functions import *
@@ -20,8 +19,9 @@ def get_input(p):
         for name in users:
             name_dict.update({name: None})
             name_dict_ext.update({name: { 
-                'phones': {phone: None for phone in users[name].phones},
-                'notes': None,
+                'phones': {str(phone): None for phone in users[name].phones},
+                'note': None,
+                'notes': {'all': None},
                 'b_day': None,
                 'email': {str(users[name].email) if users[name].email else '0': None},
                 'address': None}})
@@ -29,13 +29,15 @@ def get_input(p):
         completer = NestedCompleter.from_nested_dict({
             'hello': None,
             'add_contact': None,
-            'add_phone': None,
+            'add_phone': name_dict,
             'add_note': name_dict,
             'edit': name_dict_ext,
             'search': name_dict,
             'delete_info': name_dict_ext,
             'delete_contact': name_dict,
             'days_to_bday': name_dict,
+            'find_tag': None,
+            'find_text': None,
             'birthday_list': None,
             'show_all': None,
             'sort': None,
