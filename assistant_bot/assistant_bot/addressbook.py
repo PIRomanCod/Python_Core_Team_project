@@ -1,7 +1,6 @@
-import pickle
 from collections import UserDict
-
-from record import *
+import pickle
+import record
 import saveload as saveload
 # from assistant_bot.record import *
 # import assistant_bot.saveload as saveload
@@ -23,9 +22,9 @@ class AddressBook(UserDict):
             phones_list = ', '.join(
                 [phone.value for phone in self.data[name].phones])
             contact_info.append(f"Phones: {phones_list}")
-            if self.data[name].b_day:
-                b_day = self.data[name].b_day.value
-                contact_info.append(f"Burned: {b_day}")
+            if self.data[name].birthday:
+                birthday = self.data[name].birthday.value
+                contact_info.append(f"Burned: {birthday}")
             if self.data[name].email:
                 contact_info.append(f"Email: {self.data[name].email.value}")
             if self.data[name].notes:
@@ -42,8 +41,7 @@ class AddressBook(UserDict):
                 contact_info.append(f"Lives: {address_list.capitalize()}")
 
             return f"Contact - {name.capitalize()} have next information: {[item for item in contact_info]}"
-        else:
-            return f"There is no contacts with this data"
+        return f"There is no contacts with this data"
 
     def find_text(self, text):
         search_list = []
@@ -64,7 +62,7 @@ class AddressBook(UserDict):
                 for note, tags in value.notes.items():
                     if tag in tags:
                         search_list.append(f"{key.title()}: {note}, #{tags}")
-        if len(search_list) > 0:
+        if search_list:
             return search_list
         else:
             return f"There is no contacts with this data"
@@ -79,8 +77,7 @@ class AddressBook(UserDict):
 
         if len(search_list) > 0:
             return search_list
-        else:
-            return f"There is no contacts with this data"
+        return f"There is no contacts with this data"
 
     def iterator(self, count=5):
         contact_list = []
@@ -98,11 +95,11 @@ class AddressBook(UserDict):
     def load_file(self):
         self.data = saveload.load_file()
 
-    def get_bdays(self, timedelta):
-        self.list_bdays = {}
+    def get_birthdays(self, timedelta):
+        self.list_birthdays = {}
         for item in self.data:
-            if isinstance(self.data[item].day_to_b_day(), int) and self.data[item].day_to_b_day() <= int(timedelta):
-                self.list_bdays.update(
-                    {self.data[item].day_to_b_day(): item.capitalize()})
-        self.list_bdays = sorted(self.list_bdays.items())
-        return self.list_bdays
+            if isinstance(self.data[item].day_to_birthday(), int) and self.data[item].day_to_birthday() <= int(timedelta):
+                self.list_birthdays.update(
+                    {self.data[item].day_to_birthday(): item.capitalize()})
+        self.list_birthdays = sorted(self.list_birthdays.items())
+        return self.list_birthdays
