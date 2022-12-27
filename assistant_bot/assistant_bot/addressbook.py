@@ -1,11 +1,9 @@
 from collections import UserDict
 import pickle
 import record
-import saveload as saveload
-# from assistant_bot.record import *
-# import assistant_bot.saveload as saveload
+from saveload import file_storage
 
-class AddressBook(UserDict):
+class AddressBook(UserDict, file_storage):
     def __init__(self):
         super().__init__()
         self.load_file()
@@ -89,11 +87,11 @@ class AddressBook(UserDict):
         if contact_list:
             yield contact_list
 
-    def save_file(self):
-        saveload.save_file(self.data)
+    #def save_file(self):
+     #   saveload.save_file(self.data)
 
-    def load_file(self):
-        self.data = saveload.load_file()
+    #def load_file(self):
+     #   self.data = saveload.load_file()
 
     def get_birthdays(self, timedelta):
         self.list_birthdays = {}
