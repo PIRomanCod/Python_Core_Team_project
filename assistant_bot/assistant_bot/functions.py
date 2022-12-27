@@ -78,8 +78,28 @@ def change_attr(string):
         raise NoUserError
     else:
         record = users.data[new_elem[0]]
-        if record.change_attr(new_elem[1], new_elem[2], (" ").join(new_elem[3:])) is True:
-            return f"You changed for contact {new_elem[0].capitalize()} attribute {new_elem[1]} from {new_elem[2]} to {(' ').join(new_elem[3:])}"
+        # if record.change_attr(new_elem[1], new_elem[2], (" ").join(new_elem[3:])) is True:
+        #     return f"You changed for contact {new_elem[0].capitalize()} attribute {new_elem[1]} from {new_elem[2]} to\
+        #     {(' ').join(new_elem[3:])}"
+        # else:
+        #     return "Attribute doesn't exist"
+        if new_elem[1] in ["phone", "b_day", "email", "note", "address"]:
+            if new_elem[1] == "phone":
+                # проверка на достаточное количество аргументов
+                if new_elem[2] == new_elem[3]:
+                    return f"Phones are equal"
+                if record.change_phones(new_elem[2], new_elem[3]) is True:
+                    return f"{new_elem[0].title()}'s phone changed from {new_elem[2]} to {new_elem[3]}"
+
+            elif new_elem[1] == "b_day":
+                pass
+            elif new_elem[1] == "email":
+                pass
+            elif new_elem[1] == "note":
+                pass
+            elif new_elem[1] == "address":
+                pass
+
         else:
             return "Attribute doesn't exist"
 
@@ -172,7 +192,7 @@ def manual():
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
     >>search 'name' or 'part of info',
-    >>edit 'name' 'phones' 'old_value, if not defined = 0' 'new_value', 
+    >>edit 'name' 'phone' 'old_value, if not defined = 0' 'new_value', 
                   'note' 'start with.. - change if only one match found'  '->' 'new text' (hashtag stay the same)
                   'b_day' 'old_value, if not defined = 0' 'new_value',
                   'email' 'old_value, if not defined = 0' 'new_value',
