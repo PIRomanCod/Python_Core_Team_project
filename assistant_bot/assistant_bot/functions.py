@@ -81,7 +81,7 @@ def change_attr(string):
         raise NoUserError
     else:
         record = users.data[new_elem[0]]
-        if new_elem[1] in ["phone", "note", "b_day", "email", "address"]:
+        if new_elem[1] in ["phone", "note", "birthday", "email", "address"]:
             if new_elem[1] == "phone":
                 if len(new_elem) < 4:
                     return "The command need more args"
@@ -106,7 +106,7 @@ def change_attr(string):
                 elif result == "NoteNotFound":
                     return f"Notes not found in {new_elem[0].title()}'s notes"
 
-            elif new_elem[1] == "b_day":
+            elif new_elem[1] == "birthday":
                 if len(new_elem) < 3:
                     return "The command need more args"
                 if record.change_birthday(new_elem[2]) is True:
@@ -135,7 +135,7 @@ def delete_attribute(string):
         raise NoUserError
     else:
         record = users.data[new_elem[0]]
-        if new_elem[1] in ["phone", "b_day", "email", "note", "notes", "address"]:
+        if new_elem[1] in ["phone", "birthday", "email", "note", "notes", "address"]:
             if new_elem[1] == "phone":
                 if len(new_elem) < 3:
                     return "The command need more args"
@@ -169,7 +169,7 @@ def delete_attribute(string):
                 elif result == "NoteNotFound":
                     return f"Notes not found in {new_elem[0].title()}'s notes"
 
-            elif new_elem[1] == "b_day":
+            elif new_elem[1] == "birthday":
                 if record.delete_attribute(new_elem[1]) is True:
                     return f"Deleted {new_elem[0].title()}'s birthday"
                 else:
@@ -264,7 +264,7 @@ def stop():
 
 def manual():
     return '''Please enter one of the commands:
-    >>hello,
+    >>help,
     >>add_contact 'name' 'number (3 operator and 7 numbers digit)',
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
