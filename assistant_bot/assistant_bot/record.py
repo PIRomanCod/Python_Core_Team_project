@@ -64,15 +64,13 @@ class Record(Field):
                 if phone.value == item:
                     self.phones.remove(phone)
                     return True
-                else:
-                    return "Contact hasn't such info"
         elif attribute == "notes":
             if self.notes:
                 if item == "all":
                     self.notes = {}
                     return True
                 else:
-                    raise ValueError
+                    return False
         elif attribute == "note":
             if self.notes:
                 find_note = []
@@ -82,17 +80,24 @@ class Record(Field):
                 if len(find_note) == 1:
                     self.notes.pop(find_note[0], None)
                     return True
+                elif len(find_note) == 0:
+                    return "MatchNotFound"
                 else:
-                    raise ValueError
+                    return "ManyMatch"
+            else:
+                return "NoteNotFound"
         elif attribute == "b_day":
-            self.b_day = None
-            return True
-        elif attribute == "address":
-            self.address = None
-            return True
+            if self.b_day:
+                self.b_day = None
+                return True
         elif attribute == "email":
-            self.email = None
-            return True
+            if self.email:
+                self.email = None
+                return True
+        elif attribute == "address":
+            if self.address:
+                self.address = None
+                return True
 
     def get_info(self):
         b_day_info = ''
