@@ -1,4 +1,4 @@
-class VerificationError(Exception):
+class PhoneVerificationError(Exception):
     pass
 
 

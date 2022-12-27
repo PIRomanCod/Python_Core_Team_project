@@ -1,11 +1,14 @@
-from fields import *
+from datetime import datetime, date, timedelta
+from fields import Address, Birthday, Email, Name, Notes, Phone, Field
+
+# from fields import *
 # from assistant_bot.fields import *
 
 class Record(Field):
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
-        self.b_day = None
+        self.birthday = None
         self.email = None
         self.notes = {}
         self.address = None
@@ -47,7 +50,7 @@ class Record(Field):
             return "NoteNotFound"
 
     def change_birthday(self, new_value=None):
-        self.b_day = Birthday(new_value)
+        self.birthday = Birthday(new_value)
         return True
 
     def change_email(self, new_value=None):
@@ -86,10 +89,11 @@ class Record(Field):
                     return "ManyMatch"
             else:
                 return "NoteNotFound"
-        elif attribute == "b_day":
-            if self.b_day:
-                self.b_day = None
+        elif attribute == "birthday":
+            if self.birthday:
+                self.birthday = None
                 return True
+
         elif attribute == "email":
             if self.email:
                 self.email = None
@@ -100,14 +104,14 @@ class Record(Field):
                 return True
 
     def get_info(self):
-        b_day_info = ''
+        birthday_info = ''
         email_info = ''
         notes_info = ''
         address_info = ''
         phones_info = [phone.value for phone in self.phones]
 
-        if self.b_day:
-            b_day_info = f'Burned: {self.b_day.value}'
+        if self.birthday:
+            birthday_info = f'Burned: {self.birthday.value}'
         if self.email:
             email_info = f'Email: {self.email.value}'
         if self.notes:
@@ -122,23 +126,24 @@ class Record(Field):
             notes_info = f"Notes: {notes_string}"
         if self.address:
             address_info = f'Lives: {self.address.value.title()}'
-        return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {b_day_info} {email_info} {notes_info} {address_info}"
+        return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {{birthday_info} {email_info} {notes_info} {address_info}"
 
-    def day_to_b_day(self):
-        if not self.b_day:
+
+    def day_to_birthday(self):
+        if not self.birthday:
             return "The contact's birthday date not defined yet"
         current_date = datetime.now().date()
-        b_day_date = datetime.strptime(
-            self.b_day.value, '%d/%m/%Y').date()
-        new_date_for_b_day = b_day_date.replace(year=current_date.year)
+        birthday_date = datetime.strptime(
+            self.birthday.value, '%d/%m/%Y').date()
+        new_date_for_birthday = birthday_date.replace(year=current_date.year)
 
-        if new_date_for_b_day < current_date:
-            new_date_for_b_day = new_date_for_b_day.replace(
+        if new_date_for_birthday < current_date:
+            new_date_for_birthday = new_date_for_birthday.replace(
                 year=current_date.year + 1)
-        return (new_date_for_b_day - current_date).days
+        return (new_date_for_birthday - current_date).days
 
     def __str__(self):
-        return f'{self.name, self.phones, self.b_day, self.email, self.notes, self.address}'
+        return f'{self.name, self.phones, self.birthday, self.email, self.notes, self.address}'
 
     def __repr__(self):
-        return f'{self.name, self.phones, self.b_day, self.email, self.notes, self.address}'
+        return f'{self.name, self.phones, self.birthday, self.email, self.notes, self.address}'

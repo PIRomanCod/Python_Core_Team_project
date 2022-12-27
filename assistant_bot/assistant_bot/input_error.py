@@ -13,10 +13,10 @@ def input_error(func):
             return "The command need more args"
         except KeyError:
             return "The command is unknown"
-        except VerificationError:
+        except PhoneVerificationError:
             return "The phone number incorrect 3 + 7 phone digits. Try again!"
         except EmailVerificationError:
-            return EmailVerificationError("Email is not valid. Try again!")
+            return "Email is not valid. Try again!"
         except OwnerError:
             return "The phone number is related with other contact"
         except NoUserError:

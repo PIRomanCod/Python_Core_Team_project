@@ -1,10 +1,10 @@
-from fields.field import *
-from fields.address import *
-from fields.birthday import *
-from fields.email import *
-from fields.name import *
-from fields.notes import *
-from fields.phone import *
+from fields.field import Field
+from fields.address import Address
+from fields.birthday import Birthday
+from fields.email import Email
+from fields.name import Name
+from fields.notes import Notes
+from fields.phone import Phone
 
 # from assistant_bot.fields.field import *
 # from assistant_bot.fields.address import *

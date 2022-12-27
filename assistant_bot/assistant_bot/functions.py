@@ -1,6 +1,9 @@
-from input_error import *
-from addressbook import *
+from addressbook import AddressBook
+from input_error import input_error
+from record import Record
+from exc import NoUserError, NoteExistError
 import cleaner
+
 
 # from assistant_bot.input_error import *
 # from assistant_bot.addressbook import *
@@ -236,15 +239,15 @@ def delete_contact(string):
     return f"You delete contact {new_elem[0]}"
 
 
-def days_to_bday(string):
+def days_to_birthday(string):
     new_elem = string.split()
     record = users[new_elem[0]]
-    return f" Contact {string} has {record.day_to_b_day()} till his Birthday"
+    return f" Contact {string} has {record.day_to_birthday()} till his Birthday"
 
 
 def birthday_list(timedelta):
     after = []
-    for i in users.get_bdays(timedelta):
+    for i in users.get_birthdays(timedelta):
         a, b = i
         after.append(str(a) + " days till " + b + "'s Birthday")
     return '\n'.join(after)
@@ -269,17 +272,18 @@ def manual():
     >>edit 'name' 'phone'  'new_value', 
                   'note' 'start with.. - change if only one match found'  
                           '->' 'new text' (hashtag stay the same)
-                  'b_day' 'new_value',
+                  'birthday' 'new_value',
                   'email' 'new_value',
                   'address' 'new_value'   
     >>delete_info 'name' 'phone' 'value',
                          'note' 'start with..' - delete if only one match found
                          'notes' 'all'  - delete all notes
-                         'b_day' 
+                         'birthday' 
                          'email' 
                          'address' 
+
     >>delete_contact 'name',
-    >>days_to_bday 'name',
+    >>days_to_birthday 'name',
     >>find_tag 'tag'
     >>find_text 'text'
     >>birthday_list 'period days',
@@ -298,7 +302,7 @@ commands_dict = {"hello": hello,
                  "search": search,
                  "delete_info": delete_attribute,
                  "delete_contact": delete_contact,
-                 "days_to_bday": days_to_bday,
+                 "days_to_birthday": days_to_birthday,
                  "find_tag": find_tag,
                  "find_text": find_text,
                  "birthday_list": birthday_list,

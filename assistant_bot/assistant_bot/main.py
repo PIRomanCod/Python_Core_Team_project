@@ -1,8 +1,12 @@
-from addressbook import *
-from functions import *
+from functions import commands_dict, parser, users, hello
+import addressbook
+import console
+
+# from addressbook import *
+# from functions import *
 # from assistant_bot.addressbook import *
 # from assistant_bot.functions import *
-import console
+
 
 the_end = False
 

@@ -1,4 +1,4 @@
-from fields.field import *
+from fields.field import Field
 from exc import EmailVerificationError
 
 # from assistant_bot.fields.field import *
