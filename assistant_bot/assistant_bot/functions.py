@@ -78,27 +78,49 @@ def change_attr(string):
         raise NoUserError
     else:
         record = users.data[new_elem[0]]
-        # if record.change_attr(new_elem[1], new_elem[2], (" ").join(new_elem[3:])) is True:
-        #     return f"You changed for contact {new_elem[0].capitalize()} attribute {new_elem[1]} from {new_elem[2]} to\
-        #     {(' ').join(new_elem[3:])}"
-        # else:
-        #     return "Attribute doesn't exist"
         if new_elem[1] in ["phone", "b_day", "email", "note", "address"]:
             if new_elem[1] == "phone":
-                # проверка на достаточное количество аргументов
+                if len(new_elem) < 4:
+                    return "The command need more args"
                 if new_elem[2] == new_elem[3]:
                     return f"Phones are equal"
                 if record.change_phones(new_elem[2], new_elem[3]) is True:
                     return f"{new_elem[0].title()}'s phone changed from {new_elem[2]} to {new_elem[3]}"
+                else:
+                    return "Phone not found"
 
             elif new_elem[1] == "b_day":
-                pass
+                if len(new_elem) < 3:
+                    return "The command need more args"
+                if record.change_birthday(new_elem[2]) is True:
+                    return f"Set {new_elem[0].title()}'s birthday to {new_elem[2]}"
+
             elif new_elem[1] == "email":
-                pass
+                if len(new_elem) < 3:
+                    return "The command need more args"
+                if record.change_email(new_elem[2]) is True:
+                    return f"Set {new_elem[0].title()}'s email to {new_elem[2]}"
+
             elif new_elem[1] == "note":
-                pass
+                string_note = (" ").join(new_elem[2:])
+                if string_note.find("->") == -1:
+                    return "Separator '->' not found"
+                result = record.change_note(string_note)
+                if result is True:
+                    return f"Set {new_elem[0].title()}'s note: {string_note}"
+                elif result == "ManyMatch":
+                    return f"Too many matches in {new_elem[0].title()}'s notes"
+                elif result == "MatchNotFound":
+                    return f"Not match found in {new_elem[0].title()}'s notes"
+                elif result == "NoteNotFound":
+                    return f"Notes not found in {new_elem[0].title()}'s notes"
+
             elif new_elem[1] == "address":
-                pass
+                string_address = (" ").join(new_elem[2:])
+                if len(new_elem) < 3:
+                    return "The command need more args"
+                if record.change_address(string_address) is True:
+                    return f"Set {new_elem[0].title()}'s address to {string_address.title()}"
 
         else:
             return "Attribute doesn't exist"
@@ -192,12 +214,13 @@ def manual():
     >>add_phone 'name' 'number (3 operator and 7 numbers digit)',
     >>add_note: 'name'(or 'unnamed') 'the note text' '#hashtag' '#hashtag'...
     >>search 'name' or 'part of info',
-    >>edit 'name' 'phone' 'old_value, if not defined = 0' 'new_value', 
-                  'note' 'start with.. - change if only one match found'  '->' 'new text' (hashtag stay the same)
-                  'b_day' 'old_value, if not defined = 0' 'new_value',
-                  'email' 'old_value, if not defined = 0' 'new_value',
-                  'address' 'old_value, if not defined = 0' 'new_value'   
-    >>delete_info 'name' 'phones' 'value',
+    >>edit 'name' 'phone'  'new_value', 
+                  'note' 'start with.. - change if only one match found'  
+                          '->' 'new text' (hashtag stay the same)
+                  'b_day' 'new_value',
+                  'email' 'new_value',
+                  'address' 'new_value'   
+    >>delete_info 'name' 'phone' 'value',
                          'note' 'start with..' - delete if only one match found
                          'notes' 'all'  - delete all notes
                          'b_day' 'value'
