@@ -16,7 +16,3 @@ class NoUserError(Exception):
 
 class NoteExistError(Exception):
     pass
-
-
-class TooManyError(Exception):
-    pass

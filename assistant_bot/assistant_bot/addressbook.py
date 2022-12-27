@@ -36,7 +36,7 @@ class AddressBook(UserDict, file_storage):
                 contact_info.append(f"Notes: {notes_string}")
             if self.data[name].address:
                 address_list = self.data[name].address.value
-                contact_info.append(f"Lives: {address_list.capitalize()}")
+                contact_info.append(f"Lives: {address_list.title()}")
 
             return f"Contact - {name.capitalize()} have next information: {[item for item in contact_info]}"
         return f"There is no contacts with this data"
@@ -72,7 +72,6 @@ class AddressBook(UserDict, file_storage):
                 search_list.append(self.get_contact(key))
             elif name in value.get_info():
                 search_list.append(self.get_contact(key))
-
         if len(search_list) > 0:
             return search_list
         return f"There is no contacts with this data"
