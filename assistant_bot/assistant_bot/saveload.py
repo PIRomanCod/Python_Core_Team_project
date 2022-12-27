@@ -2,7 +2,7 @@ import pickle
 from pathlib import Path
 import os
 
-class file_storage():
+class FileStorage():
   def load_file(self):
       try:
           with open(Path.home().joinpath('PersonalAssistant').joinpath('AddressBookData.bin'), 'rb') as l_file:

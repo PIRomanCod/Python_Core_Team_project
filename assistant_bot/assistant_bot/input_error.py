@@ -1,4 +1,4 @@
-from exc import *
+from exc import PhoneVerificationError, EmailVerificationError, OwnerError, NoUserError, NoteExistError
 
 # from assistant_bot.exc import *
 

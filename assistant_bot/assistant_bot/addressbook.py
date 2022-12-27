@@ -1,9 +1,9 @@
 from collections import UserDict
 import pickle
 import record
-from saveload import file_storage
+from saveload import FileStorage
 
-class AddressBook(UserDict, file_storage):
+class AddressBook(UserDict, FileStorage):
     def __init__(self):
         super().__init__()
         self.load_file()
