@@ -126,7 +126,7 @@ class Record(Field):
             notes_info = f"Notes: {notes_string}"
         if self.address:
             address_info = f'Lives: {self.address.value.title()}'
-        return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {{birthday_info} {email_info} {notes_info} {address_info}"
+        return f"Contact - {self.name.value.capitalize()} : phones: {', '.join(phones_info)} {birthday_info} {email_info} {notes_info} {address_info}"
 
 
     def day_to_birthday(self):
